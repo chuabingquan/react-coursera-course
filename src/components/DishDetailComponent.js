@@ -5,8 +5,11 @@ import {
   CardText,
   CardBody,
   CardTitle,
-  Media
+  Media,
+  Breadcrumb,
+  BreadcrumbItem
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const RenderDish = ({ dish }) => {
   return dish ? (
@@ -46,9 +49,22 @@ const RenderComments = ({ comments }) => {
   );
 };
 
-const DishDetail = ({ dish }) => {
+const DishDetail = ({ dish, comments }) => {
   return dish ? (
     <div className="container">
+      <div className="row">
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/menu">Menu</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="col-12">
+          <h3>{dish.name}</h3>
+          <hr />
+        </div>
+      </div>
+
       <div className="row">
         <div className="col-12 col-md-5 m-1">
           <RenderDish dish={dish} />
@@ -56,7 +72,7 @@ const DishDetail = ({ dish }) => {
 
         <div className="col-12 col-md-5 m-1">
           <h4>Comments</h4>
-          <RenderComments comments={dish.comments} />
+          <RenderComments comments={comments} />
         </div>
       </div>
     </div>
