@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Card,
   CardImg,
@@ -20,9 +20,7 @@ const RenderDish = ({ dish }) => {
         <CardText>{dish.description}</CardText>
       </CardBody>
     </Card>
-  ) : (
-    <div />
-  );
+  ) : null;
 };
 
 const RenderComments = ({ comments }) => {
@@ -30,7 +28,7 @@ const RenderComments = ({ comments }) => {
     <Media list left>
       {comments.map(comment => {
         return (
-          <Media key={comment.id} left>
+          <div key={comment.id}>
             <p>{comment.comment}</p>
             <p>
               - - {comment.author},{" "}
@@ -40,13 +38,11 @@ const RenderComments = ({ comments }) => {
                 day: "2-digit"
               }).format(new Date(Date.parse(comment.date)))}
             </p>
-          </Media>
+          </div>
         );
       })}
     </Media>
-  ) : (
-    <div />
-  );
+  ) : null;
 };
 
 const DishDetail = ({ dish, comments }) => {
@@ -76,9 +72,7 @@ const DishDetail = ({ dish, comments }) => {
         </div>
       </div>
     </div>
-  ) : (
-    <div />
-  );
+  ) : null;
 };
 
 export default DishDetail;
